@@ -9,12 +9,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * Entity implementation class for Entity: Client
  *
  */
 @Entity
-
+@JsonIgnoreProperties(value = { "commandes","donations" })
 public class User implements Serializable {
 
 	@Id
@@ -29,6 +31,7 @@ public class User implements Serializable {
 	private String password;
 
 	@OneToMany(mappedBy = "user")
+	
 	private List<Commande> commandes;
 
 	@OneToMany(mappedBy = "user")

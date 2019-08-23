@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import com.github.adminfaces.template.config.AdminConfig;
@@ -19,7 +20,7 @@ import decathlon_si.services.interfaces.CategorieLocal;
 import decathlon_si.services.interfaces.ProduitLocal;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class ProduitCtr {
 
 	private Produit produit = new Produit();
@@ -44,6 +45,7 @@ public class ProduitCtr {
 
 	public void doDelete() {
 		produitLocal.delete(produitSelected);
+		produitSelected = new Produit();
 	}
 
 	public void doAdd() {
@@ -61,7 +63,7 @@ public class ProduitCtr {
 			msg = "Produit " + produitSelected.getLibele() + " updated successfully";
 		}
 		addDetailMessage(msg);
-
+		
 	}
 
 	public Produit getProduit() {
@@ -73,6 +75,7 @@ public class ProduitCtr {
 	}
 
 	public List<Produit> getProduits() {
+		produits = produitLocal.findAll();
 		return produits;
 	}
 

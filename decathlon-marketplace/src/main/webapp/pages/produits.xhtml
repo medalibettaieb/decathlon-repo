@@ -33,7 +33,7 @@
 							icon="fa fa-plus" value="New" styleClass="btn-primary" />
 						<p:spacer width="5" />
 					</div>
-					<p:dataTable var="car" value="#{produitCtr.produits}"
+					<p:dataTable var="car" value="#{produitCtr.produits}" id="t"
 						resizeMode="true" widgetVar="carsTable"
 						emptyMessage="No Produit found with given criteria">
 						<f:facet name="header">
@@ -64,7 +64,7 @@
 							icon="fa fa-plus" value="Update" styleClass="btn-primary" />
 							<p:spacer width="6" height="6"/>
 							<p:commandButton action="#{produitCtr.doDelete()}"
-							icon="fa fa-plus" value="Delete" styleClass="btn-primary" />
+							icon="fa fa-plus" value="Delete" styleClass="btn-primary" update=":form:t" />
 					
 						<p:panelGrid columns="2"
 							rendered="#{not empty produitCtr.produitSelected}">

@@ -31,6 +31,12 @@
                 <span>Gestion Categories</span>
             </p:link>
         </li>
+          <li>
+            <p:link outcome="/pages/categories" rendered="#{logonMB.loggedInAsAdministrateur}">
+                <i class="fa fa-car"></i>
+                <span>Gestion Commandes</span>
+            </p:link>
+        </li>
          <li>
             <p:link outcome="/car-list" rendered="#{logonMB.loggedInAsAdministrateur}">
                 <i class="fa fa-car"></i>
