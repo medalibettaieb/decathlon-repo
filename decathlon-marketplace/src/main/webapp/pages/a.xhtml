@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="#{layoutMB.template}">
+
+    <ui:param name="renderBreadCrumb" value="false"/>
+
+    <ui:define name="body">
+    <p:dataTable value="#{produitCtr.produits}" var="p">
+    <p:column>
+    ##{p.categorie}
+    </p:column>
+    
+    </p:dataTable>
+
+    </ui:define>
+
+
+</ui:composition>
