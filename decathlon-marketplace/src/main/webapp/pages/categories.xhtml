@@ -1,15 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:p="http://primefaces.org/ui"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="#{layoutMB.template}">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:adm="http://github.com/adminfaces"
+	template="#{layoutMB.template}">
 
-    <ui:param name="renderBreadCrumb" value="false"/>
+	<ui:param name="renderBreadCrumb" value="false" />
 
-    <ui:define name="body">
-  
+	<ui:define name="body">
+		<h:form id="form">
+			<p:commandButton value="New Category" id="withIcon"
+				action="#{categoryCtr.doUpdateForm()}" style="margin-right:20px;"
+				icon="fa fa-plus-square-o" styleClass="btn-primary" update=":form" />
+			<p:dataTable rendered="#{categoryCtr.showForm}" emptyMessage="pas de categories"
+				value="#{categoryCtr.categories}" var="c" selectionMode="single"
+				selection="#{categoryCtr.categorieSelected}" rowKey="#{c.id}"
+				id="tab">
+				<f:facet name="header">
+ 	list des Categories
+						</f:facet>
+				<p:column headerText="Id" resizable="true">
+					<h:outputText value="#{c.id}" />
+				</p:column>
+				<p:column headerText="Libele" resizable="true">
+					<h:outputText value="#{c.libele}" />
+				</p:column>
+				<f:facet name="footer">
+					<p:commandButton icon="pi pi-search" update=":form:carDetail"
+						value="View" oncomplete="PF('carDialog').show()" process="tab">
 
-    </ui:define>
+					</p:commandButton>
+				</f:facet>
+			</p:dataTable>
+			<p:dialog header="Category Info" widgetVar="carDialog" modal="false"
+				showEffect="fade" hideEffect="fade" resizable="true">
+				<p:commandButton styleClass="btn-primary" value="Supprimer" action="#{categoryCtr.doDeleteCategory()}" update=":form" />
+				<p:spacer height="20"/>
+				<p:outputPanel id="carDetail" style="text-align:center;">
+					<p:panelGrid columns="2">
+						<h:outputText value="Id:" />
+						<h:outputText value="#{categoryCtr.categorieSelected.id}" />
+						<h:outputText value="Libele:" />
+						<h:outputText value="#{categoryCtr.categorieSelected.libele}" />
+					</p:panelGrid>
+				</p:outputPanel>
+			</p:dialog>
+
+			<p:panelGrid columns="2" rendered="#{not categoryCtr.showForm}">
+				<p:outputLabel value="Libele:" />
+				<p:inputText value="#{categoryCtr.categorie.libele}" />
+				<p:commandButton value="add" action="#{categoryCtr.doAddCategory()}" update=":form" />
+			</p:panelGrid>
+
+			
+		</h:form>
+
+	</ui:define>
 
 
 </ui:composition>
