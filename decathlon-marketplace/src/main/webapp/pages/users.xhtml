@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:adm="http://github.com/adminfaces"
+	template="#{layoutMB.template}">
+
+	<ui:param name="renderBreadCrumb" value="false" />
+
+	<ui:define name="body">
+		<h:form id="form">
+			<p:dataTable id="tt" value="#{userCtr.users}" var="u"
+				selectionMode="single" selection="#{userCtr.userSelected}"
+				rowKey="#{u.id}">
+				<p:column headerText="Id" resizable="true">
+					<p:outputLabel value="#{u.id}" />
+				</p:column>
+				<p:column headerText="Nom" resizable="true">
+					<p:outputLabel value="#{u.nom}" />
+				</p:column>
+				<p:column headerText="Prenom" resizable="true">
+					<p:outputLabel value="#{u.prenom}" />
+				</p:column>
+				<p:column headerText="Email" resizable="true">
+					<p:outputLabel value="#{u.email}" />
+				</p:column>
+				<p:column headerText="Num Tel" resizable="true">
+					<p:outputLabel value="#{u.numTel}" />
+					<p:column headerText="Adresse" resizable="true">
+						<p:outputLabel value="#{u.adresse}" />
+					</p:column>
+				</p:column>
+				<f:facet name="footer">
+					<p:commandButton icon="pi pi-search" update=":form:carDetail" styleClass="btn-primary"
+						value="View" oncomplete="PF('carDialog').show()" process="tt">
+					</p:commandButton>
+				</f:facet>
+			</p:dataTable>
+
+			<p:dialog header="Category Info" widgetVar="carDialog" modal="false"
+				showEffect="fade" hideEffect="fade" resizable="true">
+				<p:commandButton styleClass="btn-primary" value="Supprimer"
+					action="#{userCtr.doDeleteUser()}" update=":form" />
+				<p:spacer height="20" />
+				<p:outputPanel id="carDetail" style="text-align:center;">
+					<p:panelGrid columns="2">
+						<h:outputText value="Id:" />
+						<h:outputText value="#{userCtr.userSelected.id}" />
+						<h:outputText value="Nom:" />
+						<h:outputText value="#{userCtr.userSelected.nom}" />
+						<h:outputText value="Prenom:" />
+						<h:outputText value="#{userCtr.userSelected.prenom}" />
+						<h:outputText value="Email:" />
+						<h:outputText value="#{userCtr.userSelected.email}" />
+						<h:outputText value="NumTel:" />
+						<h:outputText value="#{userCtr.userSelected.numTel}" />
+						<h:outputText value="Adresse:" />
+						<h:outputText value="#{userCtr.userSelected.adresse}" />
+					</p:panelGrid>
+				</p:outputPanel>
+			</p:dialog>
+		</h:form>
+	</ui:define>
+
+
+</ui:composition>
