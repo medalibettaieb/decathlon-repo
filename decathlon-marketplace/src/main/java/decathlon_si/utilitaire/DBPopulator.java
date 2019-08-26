@@ -35,10 +35,10 @@ public class DBPopulator {
 
 		Admin admin = new Admin("z", "z", "z", "z", "z@z", "z", "z");
 
-		Produit produit = new Produit("p001", "basket");
-		Produit produit2 = new Produit("p002", "survet");
-		Produit produit3 = new Produit("p003", "casket");
-		Produit produit4 = new Produit("p004", "chort");
+		Produit produit = new Produit("p001", "basket",100D);
+		Produit produit2 = new Produit("p002", "survet",200D);
+		Produit produit3 = new Produit("p003", "casket",300D);
+		Produit produit4 = new Produit("p004", "chort",400D);
 
 		Categorie categorie = new Categorie("vetements");
 		Categorie categorie2 = new Categorie("equipements");

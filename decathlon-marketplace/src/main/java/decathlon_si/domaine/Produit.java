@@ -25,6 +25,7 @@ public class Produit implements Serializable {
 	private int id;
 	private String code;
 	private String libele;
+	private Double price;
 
 	@OneToMany(mappedBy = "produit")
 	private List<LigneDonation> ligneDonations;
@@ -42,10 +43,11 @@ public class Produit implements Serializable {
 		super();
 	}
 
-	public Produit(String code, String libele) {
+	public Produit(String code, String libele,Double price) {
 		super();
 		this.code = code;
 		this.libele = libele;
+		this.price=price;
 	}
 
 	public int getId() {
@@ -102,6 +104,14 @@ public class Produit implements Serializable {
 
 	public void setStockDetails(List<StockDetail> stockDetails) {
 		this.stockDetails = stockDetails;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 
 }
