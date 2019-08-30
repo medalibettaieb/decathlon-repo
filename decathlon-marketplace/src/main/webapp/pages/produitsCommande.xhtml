@@ -78,7 +78,7 @@
 						</p:panelGrid>
 						<p:panelGrid>
 							<p:outputLabel value="quantité: " />
-							<p:inputText value="#{produitCtr.quantite}" />
+							<p:spinner id="basic" value="#{produitCtr.quantite}" />
 						</p:panelGrid>
 					</p:outputPanel>
 				</p:dialog>
@@ -89,6 +89,7 @@
 						<h:outputText value="#{p.key.libele}" />
 					</p:column>
 					<p:column headerText="Quantité: ">
+
 						<h:outputText value="#{p.value}" />
 					</p:column>
 					<p:column headerText="Prix:  ">
@@ -106,8 +107,8 @@
 					</f:facet>
 					<f:facet name="footer">
 						<p:column>
-						<p:outputLabel value="Total: "/>
-							<p:outputLabel value="#{produitCtr.findTotalCommnande()}"/>
+							<p:outputLabel value="Total: " />
+							<p:outputLabel value="#{produitCtr.findTotalCommnande()}" />
 						</p:column>
 					</f:facet>
 				</p:dataTable>
