@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -18,10 +19,10 @@ public class LigneDonation implements Serializable {
 	private LigneDonationId ligneDonationId;
 	private int quantite;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idDonation", referencedColumnName = "id", updatable = false, insertable = false)
 	private Donation donation;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idProduit", referencedColumnName = "id", updatable = false, insertable = false)
 	private Produit produit;
 	private static final long serialVersionUID = 1L;

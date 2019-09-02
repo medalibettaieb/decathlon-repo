@@ -62,7 +62,7 @@
 						<p:spacer width="6" height="6" />
 						<p:commandButton action="#{produitCtr.doPasserDoantion()}"
 							icon="fa fa-plus" value="Donation" styleClass="btn-primary"
-							update=":form:t" />
+							update=":form" />
 
 						<p:panelGrid columns="2"
 							rendered="#{not empty produitCtr.produitSelected}">
@@ -103,6 +103,12 @@
 						<p:column>
 							<p:commandButton value="Valider Commande"
 								action="#{produitCtr.doValiderCommande()}" update=":form" />
+						</p:column>
+					</f:facet>
+					<f:facet name="footer">
+						<p:column>
+							<p:commandButton value="Valider Doantion"
+								action="#{produitCtr.doValiderDonation()}" update=":form" />
 						</p:column>
 					</f:facet>
 					<f:facet name="footer">

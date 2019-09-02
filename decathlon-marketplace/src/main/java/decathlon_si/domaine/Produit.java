@@ -27,7 +27,7 @@ public class Produit implements Serializable {
 	private String libele;
 	private Double price;
 
-	@OneToMany(mappedBy = "produit")
+	@OneToMany(mappedBy = "produit", fetch = FetchType.EAGER)
 	private List<LigneDonation> ligneDonations;
 
 	@OneToMany(mappedBy = "produit")
@@ -43,11 +43,11 @@ public class Produit implements Serializable {
 		super();
 	}
 
-	public Produit(String code, String libele,Double price) {
+	public Produit(String code, String libele, Double price) {
 		super();
 		this.code = code;
 		this.libele = libele;
-		this.price=price;
+		this.price = price;
 	}
 
 	public int getId() {

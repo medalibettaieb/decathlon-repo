@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,12 +29,19 @@ public class Donation implements Serializable {
 	@ManyToOne
 	private User user;
 
-	@OneToMany(mappedBy = "donation")
+	@OneToMany(mappedBy = "donation",fetch = FetchType.EAGER)
 	private List<LigneDonation> ligneDonations;
 	private static final long serialVersionUID = 1L;
 
 	public Donation() {
 		super();
+	}
+
+	public Donation(String numDonation, Date dateOfDonation, User user) {
+		super();
+		this.numDonation = numDonation;
+		this.dateOfDonation = dateOfDonation;
+		this.user = user;
 	}
 
 	public Donation(String numDonation, Date dateOfDonation) {

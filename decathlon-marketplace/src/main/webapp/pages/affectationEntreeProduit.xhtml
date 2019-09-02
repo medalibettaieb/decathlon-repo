@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:adm="http://github.com/adminfaces"
+	template="#{layoutMB.template}">
+
+	<ui:param name="renderBreadCrumb" value="false" />
+
+	<ui:define name="body">
+		<h:form id="form">
+			<p:dataTable var="m" value="#{magasinCtr.magasins}" id="t"
+				resizeMode="true" widgetVar="carsTable"
+				emptyMessage="No Magasins found with given criteria">
+				<f:facet name="header">
+				</f:facet>
+				<p:column headerText="Name" resizable="true">
+					<h:outputText value="#{m.name}" />
+				</p:column>
+				<p:column headerText="Code" resizable="true">
+					<h:outputText value="#{m.code}" />
+				</p:column>
+				<p:column headerText="Adresse" resizable="true">
+					<h:outputText value="#{m.adresse}" />
+				</p:column>
+				<p:column headerText="Stock Details" resizable="true">
+					<h:outputText value="#{m.stockDetails.size()}" />
+				</p:column>
+				<p:column headerText="#" resizable="true">
+					<p:commandButton update=":form" oncomplete="PF('carDialog').show()"
+						icon="fa fa-eye" title="Affecter">
+						<f:setPropertyActionListener value="#{m}"
+							target="#{magasinCtr.magasinSelected}" />
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+
+			<p:dialog header="Car Info" widgetVar="carDialog" modal="false"
+				showEffect="fade" hideEffect="fade" resizable="false">
+				<p:outputPanel id="carDetail" style="text-align:center;">
+					<p:commandButton action="#{magasinCtr.doassignProduitToMagasin()}"
+						icon="fa fa-plus" value="Affecter" styleClass="btn-primary" update=":form" />
+					<p:spacer width="6" height="6" />
+
+					<p:panelGrid columns="2"
+						rendered="#{not empty produitCtr.produitSelected}">
+
+						<h:outputText value="Libele:" />
+						<h:inputText value="#{magasinCtr.produit.libele}" />
+						<h:outputText value="Date entree" />
+						<p:calendar value="#{magasinCtr.dateEntree}" />
+
+					</p:panelGrid>
+				</p:outputPanel>
+			</p:dialog>
+		</h:form>
+	</ui:define>
+
+
+</ui:composition>

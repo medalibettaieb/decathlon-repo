@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:adm="http://github.com/adminfaces"
+	template="#{layoutMB.template}">
+
+    <ui:param name="renderBreadCrumb" value="false"/>
+
+    <ui:define name="body">
+    <p:dataTable var="m" value="#{magasinCtr.magasins}" id="t"
+						resizeMode="true" widgetVar="carsTable"
+						emptyMessage="No Magasins found with given criteria">
+						<f:facet name="header">
+						</f:facet>
+						<p:column headerText="Name" resizable="true">
+							<h:outputText value="#{m.name}" />
+						</p:column>
+						<p:column headerText="Code" resizable="true">
+							<h:outputText value="#{m.code}" />
+						</p:column>
+						<p:column headerText="Adresse" resizable="true">
+							<h:outputText value="#{m.adresse}" />
+						</p:column>
+						<p:column headerText="Stock Details" resizable="true">
+							<h:outputText value="#{m.stockDetails.size()}" />
+						</p:column>
+						</p:dataTable>
+
+    </ui:define>
+
+
+</ui:composition>

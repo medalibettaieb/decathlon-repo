@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,12 +25,19 @@ public class Magasin implements Serializable {
 	private String code;
 	private String adresse;
 
-	@OneToMany(mappedBy = "magasin")
+	@OneToMany(mappedBy = "magasin", fetch = FetchType.EAGER)
 	private List<StockDetail> stockDetails;
 	private static final long serialVersionUID = 1L;
 
 	public Magasin() {
 		super();
+	}
+
+	public Magasin(String name, String code, String adresse) {
+		super();
+		this.name = name;
+		this.code = code;
+		this.adresse = adresse;
 	}
 
 	public int getId() {

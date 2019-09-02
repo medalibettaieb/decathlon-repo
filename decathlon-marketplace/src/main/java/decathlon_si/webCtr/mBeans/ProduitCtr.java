@@ -18,15 +18,19 @@ import com.github.adminfaces.starter.infra.security.LogonMB;
 import com.github.adminfaces.template.config.AdminConfig;
 
 import decathlon_si.domaine.Categorie;
+import decathlon_si.domaine.Commande;
+import decathlon_si.domaine.Donation;
 import decathlon_si.domaine.Produit;
 import decathlon_si.services.interfaces.CategorieLocal;
 import decathlon_si.services.interfaces.CommandeServiceLocal;
+import decathlon_si.services.interfaces.DonationServiceLocal;
 import decathlon_si.services.interfaces.ProduitLocal;
 
 @ManagedBean
 @ViewScoped
 public class ProduitCtr {
-
+	private List<Commande> commandesParClient = new ArrayList<>();
+	private List<Donation> donationsParClient = new ArrayList<>();
 	private Produit produit = new Produit();
 	private Produit produitSelected = new Produit();
 	private List<Produit> produits = new ArrayList<>();
@@ -38,6 +42,8 @@ public class ProduitCtr {
 	private Map<Produit, Integer> mapOfproduitCommande = new HashMap<>();
 	@EJB
 	private ProduitLocal produitLocal;
+	@EJB
+	private DonationServiceLocal donationServiceLocal;
 	@EJB
 	private CategorieLocal categorieLocal;
 	@EJB
@@ -74,11 +80,16 @@ public class ProduitCtr {
 	}
 
 	public void doPasserDoantion() {
-
+		mapOfproduitCommande.put(produitSelected, quantite);
 	}
 
 	public void doValiderCommande() {
 		commandeServiceLocal.commanderParMap(mapOfproduitCommande, logonMB.getUser());
+		mapOfproduitCommande = new HashMap<>();
+	}
+
+	public void doValiderDonation() {
+		donationServiceLocal.donnerParMap(mapOfproduitCommande, logonMB.getUser());
 		mapOfproduitCommande = new HashMap<>();
 	}
 
@@ -216,6 +227,24 @@ public class ProduitCtr {
 
 	public void setLogonMB(LogonMB logonMB) {
 		this.logonMB = logonMB;
+	}
+
+	public List<Commande> getCommandesParClient() {
+		commandesParClient = commandeServiceLocal.findCommandesByUser(logonMB.getUser().getId());
+		return commandesParClient;
+	}
+
+	public void setCommandesParClient(List<Commande> commandesParClient) {
+		this.commandesParClient = commandesParClient;
+	}
+
+	public List<Donation> getDonationsParClient() {
+		donationsParClient = donationServiceLocal.findDonationsByUser(logonMB.getUser().getId());
+		return donationsParClient;
+	}
+
+	public void setDonationsParClient(List<Donation> donationsParClient) {
+		this.donationsParClient = donationsParClient;
 	}
 
 }

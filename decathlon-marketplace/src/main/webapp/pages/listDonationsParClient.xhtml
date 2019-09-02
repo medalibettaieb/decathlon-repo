@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:adm="http://github.com/adminfaces"
+	template="#{layoutMB.template}">
+
+	<ui:param name="renderBreadCrumb" value="false" />
+
+	<ui:define name="body">
+		<p:dataTable var="car" value="#{produitCtr.donationsParClient}" id="t"
+			resizeMode="true" widgetVar="carsTable"
+			emptyMessage="No Donations found with given criteria">
+
+			<p:column headerText="Numero donation" resizable="true">
+				<h:outputText value="#{car.numDonation}" />
+			</p:column>
+			<p:column headerText="date de la donation" resizable="true">
+				<h:outputText value="#{car.dateOfDonation}" />
+			</p:column>
+
+			<p:column>
+
+				<p:dataTable value="#{car.ligneDonations}" var="l">
+					<p:column headerText="Produit libele" resizable="true">
+						<h:outputText value="#{l.produit.libele}" />
+					</p:column>
+					<p:column headerText="Produit quantité" resizable="true">
+						<h:outputText value="#{l.quantite}" />
+					</p:column>
+				</p:dataTable>
+			</p:column>
+
+		</p:dataTable>
+
+	</ui:define>
+
+
+</ui:composition>

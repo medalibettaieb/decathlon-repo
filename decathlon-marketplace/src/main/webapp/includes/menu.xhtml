@@ -58,8 +58,30 @@
                 <span>list des produits</span>
             </p:link>
         </li>
-        
-        
+        <li>
+            <p:link outcome="/pages/listCommandesParClient" rendered="#{logonMB.loggedInAsClient}">
+                <i class="fa fa-car"></i>
+                <span>list de mes Commandes</span>
+            </p:link>
+        </li>
+        <li>
+            <p:link outcome="/pages/listDonationsParClient" rendered="#{logonMB.loggedInAsClient}">
+                <i class="fa fa-car"></i>
+                <span>list de mes Donations</span>
+            </p:link>
+        </li>
+         <li>
+            <p:link outcome="/pages/listMagasins" rendered="#{logonMB.loggedInAsStockManager}">
+                <i class="fa fa-car"></i>
+                <span>list des Magasins </span>
+            </p:link>
+        </li>
+         <li>
+            <p:link outcome="/pages/affectationEntreeProduit" rendered="#{logonMB.loggedInAsStockManager}">
+                <i class="fa fa-car"></i>
+                <span>Gestion Entree produit </span>
+            </p:link>
+        </li>
 
     </ul>
 

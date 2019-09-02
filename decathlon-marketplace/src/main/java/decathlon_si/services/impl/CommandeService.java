@@ -21,12 +21,11 @@ public class CommandeService implements CommandeServiceLocal {
 
 	@Override
 	public void commanderParMap(Map<Produit, Integer> mapOfProduits, User client) {
-		Commande commande = new Commande(Double.toString(Math.random()), new Date(), "Mag01");
+		Commande commande = new Commande(String.valueOf(Math.round(Math.random() * (10000 - 5000))), new Date(), "Mag01");
 		commande.setUser(client);
 		entityManager.persist(commande);
 		entityManager.flush();
 
-		System.out.println(commande.getId());
 		for (Map.Entry<Produit, Integer> entry : mapOfProduits.entrySet()) {
 			Produit key = entry.getKey();
 			Integer value = entry.getValue();

@@ -18,4 +18,10 @@ public class StockManager extends User implements Serializable {
 		super();
 	}
 
+	public StockManager(String nom, String prenom, String adresse, String numTel, String email, String userName,
+			String password) {
+		super(nom, prenom, adresse, numTel, email, userName, password);
+		// TODO Auto-generated constructor stub
+	}
+
 }

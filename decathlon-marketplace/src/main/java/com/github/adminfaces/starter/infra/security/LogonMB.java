@@ -60,7 +60,6 @@ public class LogonMB extends AdminSession implements Serializable {
 		if (userLoggedIn != null) {
 			user = userLoggedIn;
 			isLogged = true;
-
 			currentUser = email;
 			addDetailMessage("Logged in successfully as <b>" + user.getUserName() + "</b>");
 			Faces.getExternalContext().getFlash().setKeepMessages(true);

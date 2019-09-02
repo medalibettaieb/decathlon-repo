@@ -8,8 +8,11 @@ import javax.ejb.Startup;
 import decathlon_si.domaine.Admin;
 import decathlon_si.domaine.Categorie;
 import decathlon_si.domaine.Client;
+import decathlon_si.domaine.Magasin;
 import decathlon_si.domaine.Produit;
+import decathlon_si.domaine.StockManager;
 import decathlon_si.services.interfaces.CategorieLocal;
+import decathlon_si.services.interfaces.MagasinServiceLocal;
 import decathlon_si.services.interfaces.ProduitLocal;
 import decathlon_si.services.interfaces.UserServiceLocal;
 
@@ -22,6 +25,8 @@ public class DBPopulator {
 	private ProduitLocal produitLocal;
 	@EJB
 	private CategorieLocal categorieLocal;
+	@EJB
+	private MagasinServiceLocal magasinServiceLocal;
 
 	public DBPopulator() {
 	}
@@ -35,6 +40,8 @@ public class DBPopulator {
 
 		Admin admin = new Admin("z", "z", "z", "z", "z@z", "z", "z");
 
+		StockManager stockManager=new StockManager("x", "x", "x", "x", "x@x", "x", "x");
+		
 		Produit produit = new Produit("p001", "basket",100D);
 		Produit produit2 = new Produit("p002", "survet",200D);
 		Produit produit3 = new Produit("p003", "casket",300D);
@@ -43,11 +50,15 @@ public class DBPopulator {
 		Categorie categorie = new Categorie("vetements");
 		Categorie categorie2 = new Categorie("equipements");
 
+		Magasin magasin=new Magasin("magasin sidi daoud",String.valueOf(-Math.round(Math.random() * (100 - 500))), "18 rue raoud");
+		Magasin magasin2=new Magasin("magasin Ben Arous",String.valueOf(-Math.round(Math.random() * (100 - 500))), "20 rue monsef Bay");
+		
 		userServiceLocal.save(client);
 		userServiceLocal.save(client2);
 		userServiceLocal.save(client3);
 		userServiceLocal.save(client4);
 		userServiceLocal.save(admin);
+		userServiceLocal.save(stockManager);
 
 		produitLocal.save(produit);
 		produitLocal.save(produit2);
@@ -56,5 +67,8 @@ public class DBPopulator {
 
 		categorieLocal.save(categorie);
 		categorieLocal.save(categorie2);
+		
+		magasinServiceLocal.save(magasin);
+		magasinServiceLocal.save(magasin2);
 	}
 }
