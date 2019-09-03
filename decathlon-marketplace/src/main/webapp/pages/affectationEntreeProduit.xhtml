@@ -42,7 +42,8 @@
 				showEffect="fade" hideEffect="fade" resizable="false">
 				<p:outputPanel id="carDetail" style="text-align:center;">
 					<p:commandButton action="#{magasinCtr.doassignProduitToMagasin()}"
-						icon="fa fa-plus" value="Affecter" styleClass="btn-primary" update=":form" />
+						icon="fa fa-plus" value="Affecter" styleClass="btn-primary"
+						update=":form" />
 					<p:spacer width="6" height="6" />
 
 					<p:panelGrid columns="2"
@@ -50,6 +51,10 @@
 
 						<h:outputText value="Libele:" />
 						<h:inputText value="#{magasinCtr.produit.libele}" />
+						<h:outputText value="Code:" />
+						<h:inputText value="#{magasinCtr.produit.code}" />
+						<h:outputText value="Prix:" />
+						<h:inputText value="#{magasinCtr.produit.price}" />
 						<h:outputText value="Date entree" />
 						<p:calendar value="#{magasinCtr.dateEntree}" />
 
