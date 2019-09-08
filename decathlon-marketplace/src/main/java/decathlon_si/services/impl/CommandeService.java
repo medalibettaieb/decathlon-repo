@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.ws.rs.Path;
 
 import decathlon_si.domaine.Commande;
 import decathlon_si.domaine.LigneCommande;
@@ -15,6 +16,7 @@ import decathlon_si.domaine.User;
 import decathlon_si.services.interfaces.CommandeServiceLocal;
 
 @Stateless
+@Path("/commandes")
 public class CommandeService implements CommandeServiceLocal {
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -46,6 +48,7 @@ public class CommandeService implements CommandeServiceLocal {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Commande> findCommandesByUser(int id) {
 		return entityManager.createQuery("select a from Commande a where a.user.id=:p").setParameter("p", id)

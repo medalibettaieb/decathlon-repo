@@ -49,7 +49,6 @@ public class UserService extends GenericDAO<User> implements UserServiceLocal {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Override
 	public void save(User entity) {
-		// TODO Auto-generated method stub
 		super.save(entity);
 	}
 

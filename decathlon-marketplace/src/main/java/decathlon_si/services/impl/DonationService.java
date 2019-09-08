@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.ws.rs.Path;
 
 import decathlon_si.domaine.Donation;
 import decathlon_si.domaine.LigneDonation;
@@ -15,6 +16,7 @@ import decathlon_si.domaine.User;
 import decathlon_si.services.interfaces.DonationServiceLocal;
 
 @Stateless
+@Path("/donations")
 public class DonationService implements DonationServiceLocal {
 	@PersistenceContext
 	private EntityManager entityManager;

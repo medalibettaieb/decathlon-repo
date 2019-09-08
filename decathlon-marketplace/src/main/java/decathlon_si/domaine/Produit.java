@@ -5,12 +5,14 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  * Entity implementation class for Entity: Produit
@@ -27,15 +29,19 @@ public class Produit implements Serializable {
 	private String libele;
 	private Double price;
 
-	@OneToMany(mappedBy = "produit", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "produit")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<LigneDonation> ligneDonations;
 
 	@OneToMany(mappedBy = "produit")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<LigneCommande> ligneCommandes;
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Categorie categorie;
 
 	@OneToMany(mappedBy = "produit")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<StockDetail> stockDetails;
 	private static final long serialVersionUID = 1L;
 
